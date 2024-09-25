@@ -1,5 +1,30 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+ // This is your Prisma schema file,
+ // learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+
+
+// model User {
+//   id    Int    @id @default(autoincrement())
+//   name  String
+//   email String @unique
+// }
+
+// model company {
+//   id    Int    @id @default(autoincrement())
+//   company_name  String
+//   email String @unique
+// }
+// This is your Prisma schema file
+// Learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
@@ -7,15 +32,27 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL") // Make sure this environment variable is set
 }
-
-
 
 model User {
   id    Int    @id @default(autoincrement())
   name  String
-  email String @unique
+  email String @unique // Ensures each email is unique
+
+  // Add more fields if needed, e.g., createdAt, updatedAt
+  createdAt DateTime @default(now())
 }
 
+model Company {
+  id          Int      @id @default(autoincrement()) // Unique identifier for the company
+  company_name String   // Name of the company
+  email       String    @unique // Ensures each email is unique
+
+  // Optional fields to track creation and updates
+  createdAt   DateTime @default(now()) // Timestamp for when the record was created
+  updatedAt   DateTime @updatedAt // Timestamp for when the record was last updated
+
+  // Add any additional fields you need, e.g., address, phone number, etc.
+}
 

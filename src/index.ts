@@ -3,7 +3,8 @@ import * as bodyParser from "body-parser"
 import { Request, Response } from "express"
 import { AppDataSource } from "./data-source"
 import { Routes } from "./routes"
-import { User } from "./entity/User"
+import { User } from "./entity/User" 
+import { Company } from "./entity/Company"
 
 AppDataSource.initialize().then(async () => {
 
@@ -31,21 +32,21 @@ AppDataSource.initialize().then(async () => {
     app.listen(3000)
 
     // insert new users for test
-    await AppDataSource.manager.save(
-        AppDataSource.manager.create(User, {
-            firstName: "Timber",
-            lastName: "Saw",
-            age: 27
-        })
-    )
+    // await AppDataSource.manager.save(
+    //     AppDataSource.manager.create(User, {
+    //         firstName: "Timber",
+    //         lastName: "Saw",
+    //         age: 27
+    //     })
+    // )
 
-    await AppDataSource.manager.save(
-        AppDataSource.manager.create(User, {
-            firstName: "Phantom",
-            lastName: "Assassin",
-            age: 24
-        })
-    )
+    // await AppDataSource.manager.save(
+    //     AppDataSource.manager.create(User, {
+    //         firstName: "Phantom",
+    //         lastName: "Assassin",
+    //         age: 24
+    //     })
+    // )
     app.use('/',(req,res)=>{
       res.send('server listening')
     })
